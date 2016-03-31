@@ -1,4 +1,5 @@
 #include "Arduino.h"
+#include "Tiva.h"
 #include "config.h"
 #include "def.h"
 #include "types.h"
@@ -66,6 +67,7 @@ static uint32_t neutralizeTime = 0;
 // ************************************************************************************************************
 
 void i2c_init(void) {
+  /*
   #if defined(INTERNAL_I2C_PULLUPS)
     I2C_PULLUPS_ENABLE
   #else
@@ -75,9 +77,11 @@ void i2c_init(void) {
   TWBR = ((F_CPU / 400000) - 16) / 2;          // set the I2C clock rate to 400kHz
   TWCR = 1<<TWEN;                              // enable twi module, no interrupt
   i2c_errors_count = 0;
+  */
 }
 
 void __attribute__ ((noinline)) waitTransmissionI2C(uint8_t twcr) {
+  /*
   TWCR = twcr;
   uint8_t count = 255;
   while (!(TWCR & (1<<TWINT))) {
@@ -91,34 +95,45 @@ void __attribute__ ((noinline)) waitTransmissionI2C(uint8_t twcr) {
       break;
     }
   }
+  */
 }
 
 void i2c_rep_start(uint8_t address) {
+  /*
   waitTransmissionI2C((1<<TWINT) | (1<<TWSTA) | (1<<TWEN)); // send REPEAT START condition and wait until transmission completed
   TWDR = address;                                           // send device address
   waitTransmissionI2C((1<<TWINT) | (1<<TWEN));              // wail until transmission completed
+  */
 }
 
 void i2c_stop(void) {
+  /*
   TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO);
+  */
   //  while(TWCR & (1<<TWSTO));                // <- can produce a blocking state with some WMP clones
 }
 
 void i2c_write(uint8_t data ) {
+  /*
   TWDR = data;                                 // send data to the previously addressed device
   waitTransmissionI2C((1<<TWINT) | (1<<TWEN));
+  */
 }
 
 uint8_t i2c_readAck() {
+  /*
   waitTransmissionI2C((1<<TWINT) | (1<<TWEN) | (1<<TWEA));
   return TWDR;
+  */
 }
 
 uint8_t i2c_readNak() {
+  /*
   waitTransmissionI2C((1<<TWINT) | (1<<TWEN));
   uint8_t r = TWDR;
   i2c_stop();
   return r;
+  */
 }
 
 void i2c_read_reg_to_buf(uint8_t add, uint8_t reg, uint8_t *buf, uint8_t size) {

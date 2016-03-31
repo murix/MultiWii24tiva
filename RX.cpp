@@ -1,4 +1,5 @@
 #include "Arduino.h"
+#include "Tiva.h"
 #include "config.h"
 #include "def.h"
 #include "types.h"
@@ -144,7 +145,10 @@ void configureReceiver() {
 #endif
 
   // port change Interrupt
-  ISR(RX_PC_INTERRUPT) { //this ISR is common to every receiver channel, it is call everytime a change state occurs on a RX input pin
+    /*
+  ISR(RX_PC_INTERRUPT) { 
+    //this ISR is common to every receiver channel, 
+    //it is call everytime a change state occurs on a RX input pin
     uint8_t mask;
     uint8_t pin;
     uint16_t cTime,dTime;
@@ -193,6 +197,9 @@ void configureReceiver() {
       }
     #endif
   }
+    */
+  
+  
   /*********************      atmega328P's Aux2 Pins      *************************/
   #if defined(PROMINI)
     #if defined(RCAUXPIN)

@@ -8,9 +8,10 @@ March  2015     V2.4
  any later version. see <http://www.gnu.org/licenses/>
 */
 
-#include <avr/io.h>
+//#include <avr/io.h>
 
 #include "Arduino.h"
+#include "Tiva.h"
 #include "config.h"
 #include "def.h"
 #include "types.h"

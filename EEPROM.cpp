@@ -1,5 +1,8 @@
-#include <avr/eeprom.h>
+
+//#include <avr/eeprom.h>
+
 #include "Arduino.h"
+#include "Tiva.h"
 #include "config.h"
 #include "def.h"
 #include "types.h"

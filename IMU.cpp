@@ -171,8 +171,8 @@ asm volatile ( \
 
 int32_t  __attribute__ ((noinline)) mul(int16_t a, int16_t b) {
   int32_t r;
-  MultiS16X16to32(r, a, b);
-  //r = (int32_t)a*b; without asm requirement
+  //MultiS16X16to32(r, a, b);
+  r = (int32_t)a*b; //without asm requirement
   return r;
 }
 
